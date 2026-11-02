@@ -175,9 +175,10 @@ put secret values in names or targets: those fields appear in reports.
   recovery: **5 PASS**. See [the incident note](docs/database-outage.md).
 - Invalid-hostname, delayed-response, and wrong-upstream Compose scenarios, each
   followed by a passing baseline. See [the scenario notes](docs/diagnostic-scenarios.md).
-- GitHub Actions runs Python tests on 3.11 and 3.13 and the Compose exercise,
-  with JSON reports and service logs uploaded as artifacts. Check the badge above
-  for the current run status.
+- [Verified GitHub Actions run](https://github.com/oussema-code/infra-readiness/actions/runs/41499281433):
+  78 tests passed on Python 3.11 and 3.13, plus all four Compose failure/recovery
+  exercises. JSON reports and service logs are uploaded as artifacts. The badge
+  above shows the latest run status.
 
 ## Source and limits
 

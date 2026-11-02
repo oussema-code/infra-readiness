@@ -19,8 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-The lab is adapted from Docker's Awesome Compose sample, originally dedicated
-under CC0 1.0 Universal. Its original dedication is preserved in
-lab/LICENSE.upstream; provenance and modifications are documented in
-lab/UPSTREAM.md.

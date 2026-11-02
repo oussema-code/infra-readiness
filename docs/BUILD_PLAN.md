@@ -59,7 +59,7 @@ Create API/database/proxy services and reproducible commands for each scenario. 
 
 Done when every scenario produces its documented evidence and returning to the baseline makes checks pass again.
 
-### 4. Run the evidence in CI (workflow added; GitHub execution pending) — approximately 2–4 hours
+### 4. Run the evidence in CI (implemented and verified) — approximately 2–4 hours
 
 Run unit tests and Compose integration scenarios in GitHub Actions. Always clean up lab resources and upload diagnostic reports on failure.
 
@@ -67,7 +67,7 @@ Expected lab failures must be asserted by the integration harness: the CI job pa
 
 Done when a clean checkout can reproduce the tests using documented commands and a regression in diagnosis or exit codes fails CI.
 
-### 5. Package the portfolio evidence — approximately 2–3 hours
+### 5. Package the portfolio evidence (implemented) — approximately 2–3 hours
 
 Write a concise README with purpose, architecture, quick start, one sample report, scenario instructions, and limitations. Add two incident notes covering symptoms, evidence, diagnosis, recovery, and verification. Record a short terminal demo if useful.
 
@@ -85,7 +85,7 @@ Kubernetes deployment, Terraform, Ansible, Ceph, GPUs, a dashboard, continuous m
 
 ## Next implementation task
 
-Review and explain the implementation, record a short terminal demo, and prepare the repository for publication and a real GitHub CI run. Keep the separate satellite-platform backup restoration exercise outside this CLI milestone.
+Use `docs/WALKTHROUGH.md` to practice explaining the implementation and tradeoffs. Future specialization and satellite-platform backup restoration remain separate follow-up projects.
 
 ## Implementation progress — 2026-11-02
 
@@ -94,9 +94,9 @@ Review and explain the implementation, record a short terminal demo, and prepare
 - Deadlines include name resolution, worker startup, connection, TLS, and HTTP headers; timed-out workers are killed and reaped.
 - Containerized checker can access both lab networks without database credentials or Docker socket access.
 - Automated baseline plus database-outage, invalid-hostname, delayed-response, and broken-proxy exercises implemented, each followed by a passing recovery baseline. Unique project names, ephemeral ports, reports, logs, and cleanup retained.
-- GitHub Actions workflow added; not pushed or executed on GitHub.
+- Public repository: https://github.com/oussema-code/infra-readiness. GitHub Actions passed the Python 3.11/3.13 matrix and complete Docker lab: https://github.com/oussema-code/infra-readiness/actions/runs/41499281433.
 - Evidence-backed notes added in `docs/database-outage.md` and `docs/diagnostic-scenarios.md`.
-- Remaining: demo/portfolio polish and actual GitHub CI execution.
+- Recorded demo, raw sample evidence, MIT license, and interview walkthrough added. All version 1 milestones are complete.
 
 ### Verification
 
@@ -107,5 +107,5 @@ Review and explain the implementation, record a short terminal demo, and prepare
 - Temporary resolver errors during the database outage were retained as UNKNOWN instead of permanent DNS failures.
 - Expanded Docker run `readiness-smoke-732b0515` verified all four exercises and recovery: invalid hostname = 1 PASS / 1 FAIL (exit 1); delayed response = 1 PASS / 1 UNKNOWN (exit 2); broken proxy = 4 PASS / 1 FAIL (exit 1). Each subsequent five-check baseline passed (exit 0).
 - Compose configuration validated. The smoke harness cleans up its containers, networks, and synthetic database volume.
-- Test workflow matrix (Python 3.11/3.13) has not yet run on GitHub; Windows/macOS are untested.
-- Local Git repository on main; no remote, commit, or GitHub publication created.
+- GitHub run 41499281433 passed both Python 3.11/3.13 jobs (78 tests each) and all four Docker failure/recovery exercises. Reports and logs were uploaded and downloaded for verification. Windows/macOS are untested.
+- Repository published on GitHub with an initial commit and `origin/main` tracking. Resume artifacts remain outside the public repository.
