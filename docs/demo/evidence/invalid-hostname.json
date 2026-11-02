@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02T18:16:39.076829+00:00",
+  "exit_code": 1,
+  "summary": {
+    "PASS": 1,
+    "FAIL": 1,
+    "UNKNOWN": 0
+  },
+  "checks": [
+    {
+      "name": "invalid-dns",
+      "type": "dns",
+      "target": "absent.invalid",
+      "status": "FAIL",
+      "duration_ms": 79.326,
+      "evidence": "Name resolution returned no matching address",
+      "error_category": "dns_not_found"
+    },
+    {
+      "name": "api-live",
+      "type": "http",
+      "target": "http://backend:8000/live",
+      "status": "PASS",
+      "duration_ms": 89.491,
+      "evidence": "Observed HTTP 200; expected 200",
+      "error_category": null
+    }
+  ]
+}

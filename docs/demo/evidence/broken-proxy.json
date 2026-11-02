@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02T18:16:43.947540+00:00",
+  "exit_code": 1,
+  "summary": {
+    "PASS": 4,
+    "FAIL": 1,
+    "UNKNOWN": 0
+  },
+  "checks": [
+    {
+      "name": "database-dns",
+      "type": "dns",
+      "target": "db",
+      "status": "PASS",
+      "duration_ms": 93.162,
+      "evidence": "Resolved 1 address(es): 172.21.0.2",
+      "error_category": null
+    },
+    {
+      "name": "database-tcp",
+      "type": "tcp",
+      "target": "db:3306",
+      "status": "PASS",
+      "duration_ms": 93.474,
+      "evidence": "TCP connection established",
+      "error_category": null
+    },
+    {
+      "name": "api-live",
+      "type": "http",
+      "target": "http://backend:8000/live",
+      "status": "PASS",
+      "duration_ms": 93.068,
+      "evidence": "Observed HTTP 200; expected 200",
+      "error_category": null
+    },
+    {
+      "name": "api-ready",
+      "type": "http",
+      "target": "http://backend:8000/ready",
+      "status": "PASS",
+      "duration_ms": 106.441,
+      "evidence": "Observed HTTP 200; expected 200",
+      "error_category": null
+    },
+    {
+      "name": "proxy-ready",
+      "type": "http",
+      "target": "http://proxy/ready",
+      "status": "FAIL",
+      "duration_ms": 83.899,
+      "evidence": "Observed HTTP 502; expected 200",
+      "error_category": "http_status"
+    }
+  ]
+}

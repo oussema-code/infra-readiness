@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-02T18:16:41.675075+00:00",
+  "exit_code": 2,
+  "summary": {
+    "PASS": 1,
+    "FAIL": 0,
+    "UNKNOWN": 1
+  },
+  "checks": [
+    {
+      "name": "delayed-ready",
+      "type": "http",
+      "target": "http://backend:8000/slow-ready",
+      "status": "UNKNOWN",
+      "duration_ms": 1003.798,
+      "evidence": "Check deadline of 1s exceeded; service state is undetermined",
+      "error_category": "timeout"
+    },
+    {
+      "name": "api-live",
+      "type": "http",
+      "target": "http://backend:8000/live",
+      "status": "PASS",
+      "duration_ms": 87.031,
+      "evidence": "Observed HTTP 200; expected 200",
+      "error_category": null
+    }
+  ]
+}

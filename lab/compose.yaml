@@ -1,0 +1,62 @@
+# Disposable local lab: credentials below are public test values, never production secrets.
+services:
+  db:
+    image: mariadb:11.4
+    environment:
+      MARIADB_DATABASE: example
+      MARIADB_USER: lab
+      MARIADB_PASSWORD: lab-only-password
+      MARIADB_ROOT_PASSWORD: lab-only-root-password
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/01-seed.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    networks: [backnet]
+
+  backend:
+    build: backend
+    environment:
+      LAB_DB_PASSWORD: lab-only-password
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=4)"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+    networks: [backnet, frontnet]
+
+  proxy:
+    build: proxy
+    ports:
+      - "127.0.0.1:${LAB_PORT:-18080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/live"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+    networks: [frontnet]
+
+  checker:
+    profiles: [tools]
+    build: ..
+    volumes:
+      - ../examples:/config:ro
+    command: ["run", "/config/lab.yaml"]
+    networks: [backnet, frontnet]
+
+volumes:
+  db-data:
+
+networks:
+  backnet:
+  frontnet:

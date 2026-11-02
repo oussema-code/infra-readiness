@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "infra-readiness"
+version = "0.1.0"
+description = "Evidence-based infrastructure checks with a reproducible failure lab"
+readme = "README.md"
+license = "MIT"
+authors = [{name = "Oussema Ben Ameur"}]
+
+requires-python = ">=3.11"
+dependencies = ["PyYAML==6.0.3"]
+
+[project.urls]
+Repository = "https://github.com/oussema-code/infra-readiness"
+Issues = "https://github.com/oussema-code/infra-readiness/issues"
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0"]
+
+[project.scripts]
+infra-check = "infra_readiness.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,9 @@
+concurrency: 2
+checks:
+  - name: delayed-ready
+    type: http
+    url: http://backend:8000/slow-ready
+    timeout: 1
+  - name: api-live
+    type: http
+    url: http://backend:8000/live
