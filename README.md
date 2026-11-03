@@ -194,5 +194,4 @@ Database socket timeouts bound individual operations, not total API request time
 Image tags are not digest-pinned. Windows and macOS have not been tested.
 
 The new project code is available under the [MIT license](LICENSE); the upstream
-lab dedication is retained separately. See [the implementation plan](docs/BUILD_PLAN.md)
-and [the interview walkthrough](docs/WALKTHROUGH.md).
+lab dedication is retained separately. See [the implementation plan](docs/BUILD_PLAN.md).
